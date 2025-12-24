@@ -9,7 +9,7 @@ class MultipleCubitScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final counterCubit = context.watch<CounterCubit>();
-
+    final themeCubit = context.watch<ThemeCubit>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Multiple Cubits'),
@@ -22,8 +22,13 @@ class MultipleCubitScreen extends StatelessWidget {
           ),
           IconButton(
             // icon: const Icon( Icons.light_mode_outlined, size: 100 ),
-            icon: const Icon(Icons.dark_mode_outlined, size: 100),
-            onPressed: () {},
+            icon: Icon(
+              themeCubit.state.isDarkmode
+                  ? Icons.dark_mode_outlined
+                  : Icons.light_mode_outlined,
+              size: 100,
+            ),
+            onPressed: themeCubit.toggleTheme,
           ),
           const Text('Fernando Herrera', style: TextStyle(fontSize: 25)),
           TextButton.icon(

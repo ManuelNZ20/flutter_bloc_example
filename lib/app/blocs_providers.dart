@@ -22,7 +22,10 @@ class BlocsProviders extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CounterCubit(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => ThemeCubit(),
+        ),
       ],
       child: FlutterBlocApp(),
     );

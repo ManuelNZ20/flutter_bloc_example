@@ -1,0 +1,23 @@
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+
+part 'theme_state.dart';
+
+class ThemeCubit extends Cubit<ThemeState> {
+  ThemeCubit({
+    bool darkMode = false,
+  }) : super(ThemeState(isDarkmode: darkMode));
+
+  void toggleTheme() {
+    print('cambio tema ${state.isDarkmode}');
+    emit(ThemeState(isDarkmode: !state.isDarkmode));
+  }
+
+  void setDarkMode() {
+    emit(ThemeState(isDarkmode: true));
+  }
+
+  void seLightMode() {
+    emit(ThemeState(isDarkmode: false));
+  }
+}
