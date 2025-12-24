@@ -14,17 +14,17 @@ class BlocsProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => UsernameCubit(),
-          lazy: true, //configuración por defecto
+          create: (context) => getIt<UsernameCubit>(),
+          // lazy: true, //configuración por defecto
         ),
         BlocProvider(
-          create: (context) => RouterSimpleCubit(),
+          create: (context) => getIt<RouterSimpleCubit>(),
         ),
         BlocProvider(
-          create: (context) => CounterCubit(),
+          create: (context) => getIt<CounterCubit>(),
         ),
         BlocProvider(
-          create: (context) => ThemeCubit(),
+          create: (context) => getIt<ThemeCubit>(),
         ),
       ],
       child: FlutterBlocApp(),

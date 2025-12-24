@@ -10,6 +10,7 @@ class MultipleCubitScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final counterCubit = context.watch<CounterCubit>();
     final themeCubit = context.watch<ThemeCubit>();
+    final nameCubit = context.watch<UsernameCubit>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Multiple Cubits'),
@@ -30,7 +31,10 @@ class MultipleCubitScreen extends StatelessWidget {
             ),
             onPressed: themeCubit.toggleTheme,
           ),
-          const Text('Fernando Herrera', style: TextStyle(fontSize: 25)),
+          Text(
+            nameCubit.state,
+            style: TextStyle(fontSize: 25),
+          ),
           TextButton.icon(
             icon: const Icon(
               Icons.add,
@@ -46,7 +50,7 @@ class MultipleCubitScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Nombre aleatorio'),
         icon: const Icon(Icons.refresh_rounded),
-        onPressed: () {},
+        onPressed: nameCubit.setUsername,
       ),
     );
   }
