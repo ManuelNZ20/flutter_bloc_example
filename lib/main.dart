@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'app/app.dart';
+import 'app/blocs_providers.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const BlocsProviders(),
+  );
 }
