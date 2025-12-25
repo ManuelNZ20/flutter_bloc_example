@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../config/config.dart';
 import '../../blocs/blocs.dart';
 
 class GuestsScreen extends StatelessWidget {
@@ -15,7 +16,9 @@ class GuestsScreen extends StatelessWidget {
       body: const _TodoView(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () => context
+            .read<GuestsBloc>()
+            .addGuest(RandomGenerator.getRandomName()),
       ),
     );
   }
@@ -50,11 +53,13 @@ class _TodoView extends StatelessWidget {
         /// Listado de personas a invitar
         Expanded(
           child: ListView.builder(
+            itemCount: guestBloc.state.howManyFilteredGuests,
             itemBuilder: (context, index) {
+              final guest = guestBloc.state.filteredGuest[index];
               return SwitchListTile(
-                  title: const Text('Juan carlos'),
-                  value: true,
-                  onChanged: (value) {});
+                  title: Text(guest.description),
+                  value: guest.done,
+                  onChanged: (value) => guestBloc.toggleGuest(guest.id));
             },
           ),
         )
