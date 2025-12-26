@@ -11,4 +11,18 @@ void serviceLocatorInit() {
   getIt.registerSingleton(CounterCubit());
   getIt.registerSingleton(ThemeCubit());
   getIt.registerSingleton(GuestsBloc());
+
+  getIt.registerSingleton(
+    PokemonBloc(fetchPokemon: PokemonInformation.getPokemonName),
+  );
+
+  getIt.registerSingleton(HistoricLocationBloc());
+  // final historicBloc = getIt.registerSingleton(HistoricLocationBloc());
+  getIt.registerSingleton(
+    GeolocationCubit(
+      // onNewUserLocationCallback: historicBloc.onNewUserLocation
+      onNewUserLocationCallback:
+          getIt<HistoricLocationBloc>().onNewUserLocation,
+    )..watchUserLocation(), // crea la instancia
+  );
 }
